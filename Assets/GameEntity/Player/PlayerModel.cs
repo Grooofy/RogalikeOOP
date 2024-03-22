@@ -31,13 +31,6 @@ namespace Player
         protected override void LookForward(Vector2 direction, MapController map)
         {
             base.LookForward(direction, map);
-
-            if (map.GetSymbolMap(Direction) == (char)Symbol.Wall && _pickaxe.HitAmount != 0)
-            {
-                SetNewPosition(direction);
-                map.RemoveWall(Direction);
-                _pickaxe.RemovePickaxe();
-            }
         }
     }
 }

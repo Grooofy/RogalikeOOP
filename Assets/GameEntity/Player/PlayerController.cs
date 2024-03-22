@@ -1,6 +1,7 @@
 ﻿using Map;
 using Interfaces;
 using ParentObjects;
+using UnityEngine;
 
 namespace Player
 {
@@ -14,9 +15,5 @@ namespace Player
         {
         }
 
-        public override void Manage()
-        {
-            _gameObjectModel.Move(_inputSystem, _mapController);
-        }
     }
 }

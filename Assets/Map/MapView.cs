@@ -17,7 +17,6 @@ namespace Map
                         Wall wall = Instantiate(Resources.Load("Wall", typeof(Wall))) as Wall;
                         wall.gameObject.transform.SetParent(transform, false);
                         wall.transform.position = new Vector2(i, j);
-
                     }
                 }
             }

@@ -6,7 +6,9 @@ namespace Player
 {
     public class PlayerView : GameObjectView
     {
-        public PlayerView(GameObjectModel playerModel) : base(playerModel, Symbol.Player)
+        private static string NAME = "Player";
+
+        public PlayerView(GameObjectModel playerModel) : base(playerModel, Symbol.Player, NAME)
         {
         }
     }

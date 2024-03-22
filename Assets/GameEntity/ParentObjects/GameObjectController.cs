@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+﻿using UnityEngine;
 using Interfaces;
 using Map;
 using System.Threading.Tasks;
@@ -27,10 +27,17 @@ namespace ParentObjects
             _gameObjectView.Show(_gameObjectModel.CurrentPosition, false);
         }
 
+        public void Destroy() { }
 
-        public virtual async void Manage()
+
+        public void Manage()
         {
-            await Task.Run(() => _gameObjectModel.Move(_inputSystem, _mapController));
+            _gameObjectModel.Move(_inputSystem, _mapController);
+        }
+
+        public Vector2 GetPosition()
+        {
+            return _gameObjectModel.CurrentPosition;
         }
     }
 }

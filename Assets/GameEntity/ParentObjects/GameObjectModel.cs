@@ -34,12 +34,8 @@ namespace ParentObjects
 
         public virtual void Move(IInputSystem inputSystem, MapController symbol)
         {
-            while (IsDie == false)
-            {
-                Thread.Sleep(_speed);
-                PreviousPosition = CurrentPosition;
-                LookForward(inputSystem.GetDirection(), symbol);
-            }
+            PreviousPosition = CurrentPosition;
+            LookForward(inputSystem.GetDirection(), symbol);
         }
 
         public void TakeDamage(int damage)
