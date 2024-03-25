@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Map;
+using UnityEngine.SceneManagement;
 
 public class UnityGameStarter : MonoBehaviour
 {
@@ -14,13 +15,29 @@ public class UnityGameStarter : MonoBehaviour
     private MapView _mapView;
     private MapController _controller;
 
+    private Vector2 _finishPosition;
 
 
-    void Start()
+
+    private void OnEnable()
+    {
+       LoadGame();
+    }
+
+    private void Update()
+    {
+        if(_finishPosition == _playerCreator.GetPosition())
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
+    private void LoadGame()
     {
         CreateMap();
         CreatePlayer();
         CreateWarriors();
+        _finishPosition = _controller.GetExitPosition();
     }
 
     private void CreateMap()

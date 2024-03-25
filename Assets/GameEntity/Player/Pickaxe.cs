@@ -24,7 +24,6 @@ namespace Player
 
             HitAmount--;
             AmountChanged?.Invoke(HitAmount);
-
         }
     }
 }

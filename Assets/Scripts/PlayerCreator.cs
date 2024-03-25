@@ -25,10 +25,15 @@ public class PlayerCreator : MonoBehaviour
 
     public void CreateNewPlayer(MapController mapController)
     {
-        _playerModel = new PlayerModel(_heath, _pickaxe, _position, 0);
+        _playerModel = new PlayerModel(_heath, _pickaxe, _position);
         PlayerView playerView = new PlayerView(_playerModel);
         _playerController = new PlayerController(_keyBoardInput, mapController, _playerModel, playerView);
         _playerController.Create();
+    }
+
+    public Vector2 GetPosition()
+    {
+        return _playerModel.CurrentPosition;
     }
 
     public PlayerModel GetPlayer()

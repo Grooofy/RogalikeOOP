@@ -19,10 +19,9 @@ namespace ParentObjects
         public Action<int> TakingDamage;
 
 
-        public GameObjectModel(Vector2 startPosition, int speed)
+        public GameObjectModel(Vector2 startPosition)
         {
             _startPosition = startPosition;
-            _speed = speed;
             SetPosition();
         }
 

@@ -9,13 +9,16 @@ using Enemy;
 
 public class WarriorCreator : MonoBehaviour
 {
+    [SerializeField] private float _speed;
     private WarriorModel _warriorModel;
     private WarriorView _warriorView;
     private WarriorController _warriorController;
     private AiInput _aiInput = new AiInput();
-    private int _speed = 1000;
     private int _positionX;
     private int _positionY;
+    private float _timer = 300;
+    private float _startTime = 300;
+
 
     public void CreateWarriors(MapController mapController, PlayerModel player, int count)
     {
@@ -24,6 +27,7 @@ public class WarriorCreator : MonoBehaviour
             _positionX = Random.Range(1, mapController.Weight - 1);
             _positionY = Random.Range(1, mapController.Height - 1);
             CreateWarrior(mapController, player);
+
         }
     }
 
@@ -37,7 +41,7 @@ public class WarriorCreator : MonoBehaviour
 
     private void CreateWarrior(MapController mapController, PlayerModel player)
     {
-        _warriorModel = new WarriorModel(new Vector2(_positionX, _positionY), player, _speed);
+        _warriorModel = new WarriorModel(new Vector2(_positionX, _positionY), player);
         _warriorView = new WarriorView(_warriorModel);
         _warriorController = new WarriorController(_aiInput, mapController, _warriorModel, _warriorView);
     }
@@ -45,6 +49,11 @@ public class WarriorCreator : MonoBehaviour
     private void Update()
     {
         if (_warriorController != null)
-            _warriorController.Manage();
+            if (_timer < 0)
+            {
+                _warriorController.Manage();
+                _timer = _startTime;
+            }
+        _timer -= _speed;
     }
 }

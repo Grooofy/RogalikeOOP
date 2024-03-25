@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Map
 {
@@ -27,7 +28,8 @@ namespace Map
 
         public void RemoveWall(Vector2 position)
         {
-            _map[(int)position.y, (int)position.x] = (char)Symbol.CleanCell;
+            _mapModel.RemoveWall(_map, position);
+            _view.RemoveWall(position);
         }
 
         public char GetSymbolMap(Vector2 position)

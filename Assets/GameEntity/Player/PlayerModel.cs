@@ -8,18 +8,18 @@ namespace Player
 {
     public class PlayerModel : GameObjectModel
     {
-        private Pickaxe _pickaxe;
+        public Pickaxe Pickaxe { get; private set; }
 
         public Action<int> PickaxeAmountChanged
         {
-            get => _pickaxe.AmountChanged;
-            set => _pickaxe.AmountChanged = value;
+            get => Pickaxe.AmountChanged;
+            set => Pickaxe.AmountChanged = value;
         }
 
-        public PlayerModel(int health, int pickaxeAmount, Vector2 startPosition, int speed) : base(startPosition, speed)
+        public PlayerModel(int health, int pickaxeAmount, Vector2 startPosition) : base(startPosition)
         {
             Health = health;
-            _pickaxe = new Pickaxe(pickaxeAmount);
+            Pickaxe = new Pickaxe(pickaxeAmount);
         }
 
         public override void Move(IInputSystem inputSystem, MapController symbol)
@@ -31,6 +31,12 @@ namespace Player
         protected override void LookForward(Vector2 direction, MapController map)
         {
             base.LookForward(direction, map);
+            if (map.GetSymbolMap(Direction) == (char)Symbol.Wall && Pickaxe.HitAmount != 0)
+            {
+                SetNewPosition(direction);
+                map.RemoveWall(Direction);
+                Pickaxe.RemovePickaxe();
+            }
         }
     }
 }

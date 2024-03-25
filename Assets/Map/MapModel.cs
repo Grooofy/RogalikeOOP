@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using Generator;
+using UnityEngine.UIElements;
+using System;
 
 namespace Map
 {
@@ -10,6 +12,7 @@ namespace Map
         private readonly char _wallSymbol = (char)Symbol.Wall;
         private readonly char _perimeterWallSymbol = (char)Symbol.PerimeterWall;
         private readonly char _cleanCell = (char)Symbol.CleanCell;
+        public Action<Vector2> wallRemoved;
 
         public char[,] Generate(int width, int height)
         {
@@ -20,6 +23,13 @@ namespace Map
             newMap[width - 2, height - 3] = _cleanCell;
             return newMap;
         }
+
+        public void RemoveWall(char[,] map, Vector2 position)
+        {
+            map[(int)position.y, (int)position.x] = (char)Symbol.CleanCell;
+            wallRemoved?.Invoke(position);
+        }
+
 
         public Vector2 GetExitPosition()
         {

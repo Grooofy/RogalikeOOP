@@ -12,7 +12,7 @@ namespace Enemy
         private PlayerModel _playerModel;
 
 
-        public WarriorModel(Vector2 startPosition, PlayerModel playerModel, int speed) : base(startPosition, speed)
+        public WarriorModel(Vector2 startPosition, PlayerModel playerModel ) : base(startPosition)
         {
             _playerModel = playerModel;
         }
