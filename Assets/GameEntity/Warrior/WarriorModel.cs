@@ -25,6 +25,7 @@ namespace Enemy
         protected override void LookForward(Vector2 direction, MapController map)
         {
             base.LookForward(direction, map);
+         
             if (CurrentPosition == _playerModel.CurrentPosition)
             {
                 Attack(_playerModel);

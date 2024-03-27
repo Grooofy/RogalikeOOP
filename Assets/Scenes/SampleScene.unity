@@ -664,6 +664,7 @@ MonoBehaviour:
   _weight: 15
   _playerCreator: {fileID: 1997397615}
   _warriorCreator: {fileID: 1223073770}
+  _amountWarriors: 3
 --- !u!4 &1376436953
 Transform:
   m_ObjectHideFlags: 0

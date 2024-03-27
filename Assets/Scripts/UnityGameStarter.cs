@@ -10,14 +10,13 @@ public class UnityGameStarter : MonoBehaviour
     [SerializeField] private int _weight;
     [SerializeField] private PlayerCreator _playerCreator;
     [SerializeField] private WarriorCreator _warriorCreator;
+    [SerializeField] private int _amountWarriors;
 
     private MapModel _mapModel;
     private MapView _mapView;
     private MapController _controller;
 
     private Vector2 _finishPosition;
-
-
 
     private void OnEnable()
     {
@@ -55,7 +54,7 @@ public class UnityGameStarter : MonoBehaviour
 
     private void CreateWarriors()
     {
-        _warriorCreator.CreateWarriors(_controller, _playerCreator.GetPlayer(), 1);
+        _warriorCreator.CreateWarriors(_controller, _playerCreator.GetPlayer(), _amountWarriors);
     }
 
 }
